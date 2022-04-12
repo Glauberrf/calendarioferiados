@@ -48,29 +48,14 @@ def Janela_Inserir_Feriado():
 
     #top = tk.Toplevel(root)
 
-    cal = Calendar(janela_inserir_feriado, selectmode='none')
-    cal.grid(row = 7, column = 0)
-    #date = cal.datetime.today() + cal.timedelta(days=2)
     
-    date = cal.datetime(2022,3,29)
-    print("DATAS: ",date)
     #cal.calevent_create(date, 'Hello World', 'message')
     #cal.calevent_create(date, 'Reminder 2', 'reminder')
     #cal.calevent_create(date + cal.timedelta(days=-2), 'Reminder 1', 'reminder')
     #cal.calevent_create(date, 'Reminder 1', 'reminder')
     #cal.calevent_create(date + cal.timedelta(days=3), 'Message', 'message')
-    print(data[0])
-    i = 0
-    for dia in data:
-        print("dia:",int(dia[0:4]),",",int(dia[5]),",",int(dia[7:9]))
-        date = cal.datetime(int(dia[0:4]),int(dia[5]),int(dia[7:9]))
-        cal.calevent_create(date, 'Reminder 2', 'reminder')
-        cal.tag_config('reminder', background='red', foreground='black')
-
-        #cal.pack(fill="both", expand=True)
-        labelz = ttk.Label(janela_inserir_feriado, text=dia[7:9]+"/"+dia[5]+"/"+dia[0:4])
-        labelz.grid(row = 7+i,column = 3)
-        i = i + 1
+    
+    
 
 
 
@@ -82,9 +67,31 @@ def Janela_Inserir_Feriado():
 
 
 janela = tk.Tk()
+janela.geometry("800x600")
 
-bt_inserir_feriado = tk.Button(janela, text = "Inserir feriados", command = Janela_Inserir_Feriado)
+bt_inserir_feriado = tk.Button(janela, text = "Inserir feriados")
 bt_inserir_feriado.grid(row=0,column=0)
+
+cal = Calendar(janela, selectmode='none')
+
+cal.grid(row = 7, column = 0)
+
+
+#date = cal.datetime.today() + cal.timedelta(days=2)
+
+date = cal.datetime(2022,3,29)
+
+i = 0
+for dia in data:
+    print("dia:",int(dia[0:4]),",",int(dia[5]),",",int(dia[7:9]))
+    date = cal.datetime(int(dia[0:4]),int(dia[5]),int(dia[7:9]))
+    cal.calevent_create(date, 'Reminder 2', 'reminder')
+    cal.tag_config('reminder', background='red', foreground='black')
+
+    #cal.pack(fill="both", expand=True)
+    labelz = ttk.Label(janela, text=dia[7:9]+"/"+dia[5]+"/"+dia[0:4])
+    labelz.grid(row = i+10,column = 0)
+    i = i + 1
 
 
 
